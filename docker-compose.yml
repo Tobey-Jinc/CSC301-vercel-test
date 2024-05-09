@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  dbPostgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+
+  dbCouch:
+    image: couchdb
+    restart: always
+    ports:
+      - 5984:5984
+    environment:
+      COUCHDB_USER: iamuser
+      COUCHDB_PASSWORD: password
+
+  dbSQL:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: yourStrong(!)Password
+      MSSQL_PID: Express
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
